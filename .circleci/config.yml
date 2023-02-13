@@ -27,7 +27,7 @@ jobs:
 
 # Invoke jobs via workflows
 workflows:
-  say-hello-workflow:
+  sayHello-workflow:
     jobs:
       - print_hello
       - print_world:
