@@ -6,35 +6,34 @@ commands:
 jobs:
   save_hello_world_output:
     docker:
-      - image: circleci/node:13.8.0
+      - image: alpine
     steps:
       - run: echo "hello world" > ~/output.txt
       - persist_to_workspace:
           root: ~/
           paths:
             - output.txt
-
   print_output_file:
     docker:
-      - image: circleci/node:13.8.0
+      - image: alpine
     steps:
       - attach_workspace:
           at: ~/
       - run: cat ~/output.txt
   my_job:
     docker:
-      - image: circleci/node:13.8.0
+      - image: alpine
     steps:
        - print_pipeline_id
-  my_job_2:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - run: exit 1
-      - run:
-          name: on error
-          command: echo "Hello Error!"
-          when: on_fail
+  # my_job_2:
+  #   docker:
+  #     - image: circleci/node:13.8.0
+  #   steps:
+  #     - run: exit 1
+  #     - run:
+  #         name: on error
+  #         command: echo "Hello Error!"
+  #         when: on_fail
 workflows:
   my_workflow:
     jobs:
